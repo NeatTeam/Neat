@@ -1,50 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'client_services_page.dart';
+// import 'package:google_fonts/google_fonts.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class CleanersServicesPage extends StatefulWidget {
+  const CleanersServicesPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Cleaning Services',
-      theme: ThemeData(
-        colorScheme: ColorScheme.light(
-          primary: const Color(0xFF3B6F3F),
-          secondary: const Color(0xFFE4E2E2),
-          surface: const Color(0xFFE4E2E2),
-          surfaceContainerHighest: const Color(0xFF9E9E9E),
-          onPrimary: const Color(0xFFE4E2E2),
-          onSecondary: const Color(0xFF292828),
-        ),
-        useMaterial3: true,
-        textTheme: GoogleFonts.interTextTheme(),
-        cardTheme: CardTheme(
-          color: const Color(0xFFE4E2E2),
-          elevation: 4,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-        ),
-      ),
-      home: const ClientServicesPage(),
-    );
-  }
+  State<CleanersServicesPage> createState() => _CleanersServicesPageState();
 }
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
-
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
+class _CleanersServicesPageState extends State<CleanersServicesPage> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
@@ -653,4 +617,4 @@ class Service {
     required this.description,
     required this.price,
   });
-}
+} 
