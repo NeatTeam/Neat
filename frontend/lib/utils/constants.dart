@@ -11,9 +11,11 @@ class AppColors {
   static const Color grey = Color(0xFF757575);
   static const Color card = Color(0xFF262626);
   static const Color error = Color(0xFFCF6679);
+  static const Color success = Color(0xFF4CAF50);
   static const Color divider = Color(0xFF424242);
   static const Color shadow = Color(0x80000000); // black with 50% opacity
   static const Color white = Colors.white;
+  static const Color secondaryText = Color(0xFF9E9E9E);
 }
 
 // App text styles

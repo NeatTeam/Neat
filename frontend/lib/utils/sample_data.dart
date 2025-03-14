@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import '../models/service.dart';
 import '../models/cleaner.dart';
 import '../models/promotion.dart';
+import '../models/cleaner_profile.dart';
+import '../models/user_profile.dart';
+import '../models/review.dart';
+import '../models/cleaning_activity.dart';
 
 // Sample data class for storing test data
 class SampleData {
@@ -93,4 +97,93 @@ class SampleData {
       color: 0xFF43A047, // Green
     ),
   ];
+
+  // Sample cleaner profile
+  static final cleanerProfile = CleanerProfile(
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'john.doe@example.com',
+    phone: '+1 234 567 8900',
+    rating: 4.8,
+    totalCleanings: 156,
+    earnings: 4500.0,
+    reviews: [
+      Review(
+        id: '1',
+        authorName: 'Alice Brown',
+        rating: 5.0,
+        text: 'Great service!',
+        date: DateTime(2024, 3, 15),
+      ),
+      Review(
+        id: '2',
+        authorName: 'Bob Wilson',
+        rating: 4.8,
+        text: 'Very professional',
+        date: DateTime(2024, 3, 10),
+      ),
+      Review(
+        id: '3',
+        authorName: 'Carol Davis',
+        rating: 4.7,
+        text: 'Would recommend',
+        date: DateTime(2024, 3, 5),
+      ),
+    ],
+    certificates: [
+      'Professional Cleaning Certificate',
+      'Health & Safety Training',
+    ],
+    paymentMethods: [
+      'Credit Card',
+      'PayPal',
+    ],
+    activities: [
+      'Deep Cleaning',
+      'Regular Maintenance',
+      'Window Cleaning',
+    ],
+  );
+
+  // Sample user profile
+  static final userProfile = UserProfile(
+    firstName: 'Jane',
+    lastName: 'Smith',
+    email: 'jane.smith@example.com',
+    phone: '+1 234 567 8901',
+    addresses: [
+      '123 Main St, Apt 4B, New York, NY 10001',
+      '456 Park Ave, Suite 7, New York, NY 10002',
+    ],
+    paymentMethods: [
+      'Credit Card',
+      'PayPal',
+    ],
+    bookings: [
+      'Booking #1234',
+      'Booking #1235',
+    ],
+    rating: 4.8,
+    activities: [
+      CleaningActivity(
+        id: 'ca1',
+        type: 'Deep Cleaning',
+        date: DateTime(2024, 3, 15),
+        price: 89.99,
+        address: '123 Main St, Apt 4B, New York, NY 10001',
+        cleanerName: 'Sarah Johnson',
+        status: 'Completed',
+      ),
+      CleaningActivity(
+        id: 'ca2',
+        type: 'Standard Cleaning',
+        date: DateTime(2024, 3, 1),
+        price: 49.99,
+        address: '123 Main St, Apt 4B, New York, NY 10001',
+        cleanerName: 'Michael Smith',
+        status: 'Scheduled',
+      ),
+    ],
+    points: 2400,
+  );
 } 

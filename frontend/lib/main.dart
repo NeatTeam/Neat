@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'screens/home_screen.dart';
+import 'screens/role_selection_screen.dart';
 import 'utils/constants.dart';
-import 'utils/sample_data.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,10 +25,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.dark,
         colorScheme: ColorScheme.dark(
-          primary: const Color(0xFF2E7D32),
-          secondary: const Color(0xFF4CAF50),
-          background: const Color(0xFF121212),
-          surface: const Color(0xFF1E1E1E),
+          primary: AppColors.primary,
+          secondary: AppColors.secondary,
+          background: AppColors.background,
+          surface: AppColors.surface,
         ),
         useMaterial3: true,
         appBarTheme: const AppBarTheme(
@@ -47,10 +46,7 @@ class MyApp extends StatelessWidget {
           bodyMedium: TextStyle(color: Colors.white),
         ),
       ),
-      home: HomeScreen(
-        services: SampleData.services,
-        promotions: SampleData.promotions,
-      ),
+      home: const RoleSelectionScreen(),
     );
   }
 }

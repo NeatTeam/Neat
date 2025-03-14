@@ -5,7 +5,10 @@ import '../widgets/cards/promotion_card.dart';
 import '../widgets/sheets/order_sheet.dart';
 import '../screens/services_screen.dart';
 import '../screens/activity_screen.dart';
+import '../screens/role_selection_screen.dart';
+import '../screens/user_profile_screen.dart';
 import '../utils/constants.dart';
+import '../utils/sample_data.dart';
 import '../models/service.dart';
 import '../models/promotion.dart';
 import '../widgets/sheets/service_details_sheet.dart';
@@ -29,9 +32,11 @@ class _HomeScreenState extends State<HomeScreen> {
   String _address = AppConstants.defaultAddress;
 
   void _onItemTapped(int index) {
+    if (index == _selectedIndex) return;
+
     if (index == 1) {
       // Navigate to Services screen
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => ServicesScreen(
@@ -42,10 +47,18 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     } else if (index == 2) {
       // Navigate to Activity screen
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => const ActivityScreen(),
+        ),
+      );
+    } else if (index == 3) {
+      // Navigate to Profile screen
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => UserProfileScreen(profile: SampleData.userProfile),
         ),
       );
     } else {
@@ -102,19 +115,37 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Center(
-                        child: Icon(
-                          Icons.person,
-                          color: Theme.of(context).colorScheme.primary,
+                    PopupMenuButton(
+                      icon: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(
+                          child: Icon(
+                            Icons.person,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
                         ),
                       ),
+                      itemBuilder: (context) => [
+                        PopupMenuItem(
+                          child: ListTile(
+                            leading: const Icon(Icons.swap_horiz),
+                            title: const Text('Switch Role'),
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const RoleSelectionScreen(),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
