@@ -29,21 +29,21 @@ class _WalletScreenState extends State<WalletScreen> {
   final List<Transaction> _transactions = [
     Transaction(
       id: '1',
-      description: 'Оплата за уборку',
+      description: 'Payment for cleaning',
       amount: 3500,
       date: DateTime.now().subtract(const Duration(days: 1)),
       isIncome: true,
     ),
     Transaction(
       id: '2',
-      description: 'Вывод средств',
+      description: 'Withdrawal of funds',
       amount: 5000,
       date: DateTime.now().subtract(const Duration(days: 3)),
       isIncome: false,
     ),
     Transaction(
       id: '3',
-      description: 'Оплата за уборку',
+      description: 'Payment for cleaning',
       amount: 2500,
       date: DateTime.now().subtract(const Duration(days: 5)),
       isIncome: true,
@@ -66,7 +66,7 @@ class _WalletScreenState extends State<WalletScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: const Text(
-          'Кошелек',
+          'Wallet',
           style: TextStyle(
             color: Colors.white,
             fontSize: 20,
@@ -111,7 +111,7 @@ class _WalletScreenState extends State<WalletScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'Баланс',
+            'Balance:',
             style: TextStyle(
               color: Colors.white,
               fontSize: 16,
@@ -143,7 +143,7 @@ class _WalletScreenState extends State<WalletScreen> {
                     ),
                   ),
                   child: const Text(
-                    'Вывести',
+                    'Withdraw',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'providers/role_provider.dart';
 import 'screens/role_selection_screen.dart';
+import 'screens/home_screen.dart';
+import 'screens/cleaner_profile_screen.dart';
 import 'utils/constants.dart';
+import 'utils/sample_data.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,41 +16,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.light,
-      ),
-    );
-
-    return MaterialApp(
-      title: 'Neat Cleaning',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        colorScheme: ColorScheme.dark(
-          primary: AppColors.primary,
-          secondary: AppColors.secondary,
-          background: AppColors.background,
-          surface: AppColors.surface,
-        ),
-        useMaterial3: true,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          iconTheme: IconThemeData(color: Colors.white),
-          titleTextStyle: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
+    return ChangeNotifierProvider(
+      create: (_) => RoleProvider(),
+      child: MaterialApp(
+        title: 'Neat Cleaning',
+        theme: AppTheme.darkTheme,
+        home: const RoleSelectionScreen(),
+        routes: {
+          '/home': (context) => HomeScreen(
+            services: SampleData.services,
+            promotions: SampleData.promotions,
           ),
-        ),
-        textTheme: const TextTheme(
-          bodyLarge: TextStyle(color: Colors.white),
-          bodyMedium: TextStyle(color: Colors.white),
-        ),
+          '/cleaner': (context) => CleanerProfileScreen(
+            profile: SampleData.cleanerProfile,
+          ),
+        },
       ),
-      home: const RoleSelectionScreen(),
     );
   }
 }

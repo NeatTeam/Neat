@@ -4,6 +4,7 @@ import '../widgets/common/bottom_navbar.dart';
 import '../utils/sample_data.dart';
 import 'home_screen.dart';
 import 'services_screen.dart';
+import 'user_profile_screen.dart';
 
 class ActivityScreen extends StatelessWidget {
   const ActivityScreen({super.key});
@@ -92,9 +93,15 @@ class ActivityScreen extends StatelessWidget {
                 ),
               ),
             );
+          } else if (index == 3) {
+            // Navigate to Profile
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => UserProfileScreen(profile: SampleData.userProfile),
+              ),
+            );
           }
-          // Don't need to handle index 2 as we're already on Activity
-          // Add index 3 (Profile) handling when that screen is created
         },
       ),
     );

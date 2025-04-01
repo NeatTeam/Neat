@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../providers/role_provider.dart';
 import '../../utils/constants.dart';
 import '../../screens/home_screen.dart';
 import '../../screens/services_screen.dart';
@@ -11,13 +13,11 @@ import '../../utils/sample_data.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int currentIndex;
-  final bool isCleaner;
   final Function(int)? onTap;
 
   const BottomNavBar({
     Key? key,
     required this.currentIndex,
-    this.isCleaner = false,
     this.onTap,
   }) : super(key: key);
 
@@ -30,6 +30,7 @@ class BottomNavBar extends StatelessWidget {
     if (index == currentIndex) return;
 
     Widget? nextScreen;
+    final isCleaner = context.read<RoleProvider>().isCleaner;
     
     if (isCleaner) {
       switch (index) {
@@ -37,10 +38,10 @@ class BottomNavBar extends StatelessWidget {
           nextScreen = CleanerProfileScreen(profile: SampleData.cleanerProfile);
           break;
         case 1:
-          // Orders screen for cleaner
+          // services which only for cleeaner
           break;
         case 2:
-          nextScreen = const ChatScreen();
+          nextScreen = const ChatScreen(isCleaner: true);
           break;
         case 3:
           nextScreen = CleanerProfileScreen(profile: SampleData.cleanerProfile);
@@ -79,6 +80,8 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isCleaner = context.watch<RoleProvider>().isCleaner;
+    
     return Container(
       decoration: BoxDecoration(
         color: AppColors.surface,

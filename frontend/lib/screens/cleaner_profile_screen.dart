@@ -94,7 +94,6 @@ class _CleanerProfileScreenState extends State<CleanerProfileScreen> {
       bottomNavigationBar: BottomNavBar(
         currentIndex: _currentIndex,
         onTap: _onBottomNavTap,
-        isCleaner: true,
       ),
     );
   }

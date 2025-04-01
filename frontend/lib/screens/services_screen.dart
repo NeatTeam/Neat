@@ -7,6 +7,7 @@ import '../utils/constants.dart';
 import '../models/service.dart';
 import '../screens/home_screen.dart';
 import '../screens/activity_screen.dart';
+import '../screens/user_profile_screen.dart';
 
 class ServicesScreen extends StatefulWidget {
   final List<Service> services;
@@ -47,23 +48,36 @@ class ServicesScreenState extends State<ServicesScreen> {
     }
     
     if (index == 0) {
-      // Go back to Home
-      Navigator.pop(context);
+      // Navigate to Home
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeScreen(
+            services: widget.services,
+            promotions: SampleData.promotions,
+          ),
+        ),
+      );
+    } else if (index == 2) {
+      // Navigate to Activity
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const ActivityScreen(),
+        ),
+      );
+    } else if (index == 3) {
+      // Navigate to Profile
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => UserProfileScreen(profile: SampleData.userProfile),
+        ),
+      );
     } else {
       setState(() {
         _selectedIndex = index;
       });
-      
-      // For Activity and Profile tabs, we'd navigate to those screens
-      // in a real app. For now, just show a snackbar.
-      if (index > 1) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('${index == 2 ? 'Activity' : 'Profile'} screen would show here'),
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
-      }
     }
   }
   
@@ -149,26 +163,7 @@ class ServicesScreenState extends State<ServicesScreen> {
       ),
       bottomNavigationBar: BottomNavBar(
         currentIndex: widget.selectedIndex,
-        onTap: (index) {
-          if (index == 0) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomeScreen(
-                  services: widget.services,
-                  promotions: SampleData.promotions,
-                ),
-              ),
-            );
-          } else if (index == 2) {  // Add this condition for activity
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ActivityScreen(),
-              ),
-            );
-          }
-        },
+        onTap: _onItemTapped,
       ),
     );
   }

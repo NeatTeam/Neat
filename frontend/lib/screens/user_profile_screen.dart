@@ -70,7 +70,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: const BottomNavBar(currentIndex: 3),
+      bottomNavigationBar: BottomNavBar(
+        currentIndex: 3,
+      ),
     );
   }
 

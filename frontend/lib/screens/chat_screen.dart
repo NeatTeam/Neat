@@ -39,7 +39,12 @@ class Message {
 }
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({Key? key}) : super(key: key);
+  final bool isCleaner;
+  
+  const ChatScreen({
+    Key? key,
+    this.isCleaner = false,
+  }) : super(key: key);
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
@@ -162,7 +167,9 @@ class _ChatScreenState extends State<ChatScreen> {
           );
         },
       ),
-      bottomNavigationBar: const BottomNavBar(currentIndex: 2),
+      bottomNavigationBar: BottomNavBar(
+        currentIndex: 2,
+      ),
     );
   }
 
