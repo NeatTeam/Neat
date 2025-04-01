@@ -9,6 +9,7 @@ import '../../screens/user_profile_screen.dart';
 import '../../screens/cleaner_profile_screen.dart';
 import '../../screens/chat_screen.dart';
 import '../../screens/wallet_screen.dart';
+import '../../screens/cleaner_services_screen.dart';
 import '../../utils/sample_data.dart';
 
 class BottomNavBar extends StatelessWidget {
@@ -38,7 +39,7 @@ class BottomNavBar extends StatelessWidget {
           nextScreen = CleanerProfileScreen(profile: SampleData.cleanerProfile);
           break;
         case 1:
-          // services which only for cleeaner
+          nextScreen = const CleanerServicesScreen();
           break;
         case 2:
           nextScreen = const ChatScreen(isCleaner: true);
@@ -110,9 +111,9 @@ class BottomNavBar extends StatelessWidget {
                   label: 'Home',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.list_alt_outlined),
-                  activeIcon: Icon(Icons.list_alt),
-                  label: 'Orders',
+                  icon: Icon(Icons.cleaning_services_outlined),
+                  activeIcon: Icon(Icons.cleaning_services),
+                  label: 'Services',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.chat_outlined),

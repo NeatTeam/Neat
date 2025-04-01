@@ -14,6 +14,8 @@ import 'reviews_screen.dart';
 import 'notification_settings_screen.dart';
 import 'cleaner_settings_screen.dart';
 import 'role_selection_screen.dart';
+import 'cleaner_services_screen.dart';
+import 'activity_screen.dart';
 
 class CleanerProfileScreen extends StatefulWidget {
   final CleanerProfile profile;
@@ -92,8 +94,38 @@ class _CleanerProfileScreenState extends State<CleanerProfileScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavBar(
-        currentIndex: _currentIndex,
-        onTap: _onBottomNavTap,
+        currentIndex: 3,
+        onTap: (index) {
+          if (index == 0) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CleanerProfileScreen(profile: widget.profile),
+              ),
+            );
+          } else if (index == 1) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const CleanerServicesScreen(),
+              ),
+            );
+          } else if (index == 2) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ChatScreen(isCleaner: true),
+              ),
+            );
+          } else if (index == 3) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CleanerProfileScreen(profile: widget.profile),
+              ),
+            );
+          }
+        },
       ),
     );
   }
@@ -503,21 +535,5 @@ class _CleanerProfileScreenState extends State<CleanerProfileScreen> {
         ),
       ],
     );
-  }
-
-  void _onBottomNavTap(int index) {
-    if (index == _currentIndex) return;
-    
-    if (index == 2) { // Chat tab
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const ChatScreen(),
-        ),
-      );
-    } else {
-      setState(() => _currentIndex = index);
-      // TODO: Handle navigation for other tabs
-    }
   }
 } 
